@@ -12,17 +12,17 @@ using std::setw;
 class Roster
 {
 private:
-	int arrayIndex = -1;
+	int totalStudents = -1;
 	const static int numStudents = 5;
 	const static int numItems = 9;
 	Student* classRosterArray[numItems];
 	const string studentData[];
 public:
 	Roster();
-	Student* getStudents(int arrayIndex);
+	Student* getStudents(int totalStudents);
 	void parseClass(string studentData);
 	void add(string StudentID, string FirstName, string LastName, string EmailAddress, int Age,int daysInCourse1,int daysInCourse2,int daysInCourse3, DegreeProgram dp);
-	/*void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgam);*/
+	
 	//E3
 	void remove(string studentID);
 	void printAll();

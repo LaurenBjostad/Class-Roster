@@ -9,27 +9,13 @@ Roster::Roster()
 {
 }
 
-//void Student::classRosterArray[i] = {}; //added
 
-//void Roster::parseClass(const string studentData)
 void Roster::parseClass(string row)
 
 {
 	DegreeProgram dp = DegreeProgram::SECURITY;
 	if (row.back() == 'K')  dp = DegreeProgram::NETWORK;
 	else if (row.back() == 'E')  dp = DegreeProgram::SOFTWARE;
-
-	/*string tempClassArray[8];
-	int rhs = 0;
-	int lhs = 0;
-	for (int i = 0; i < 8; i++)
-	{
-		rhs = row.find(",", lhs);
-		tempClassArray[i] = row.substr(lhs, rhs - lhs);
-		lhs = rhs + 1;
-	}*/
-
-	//for (int i = 0; i < 4; i++)
 
 	int lhs = 0;
 
@@ -73,10 +59,8 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 {
 	int completionDays[3] = { daysInCourse1,daysInCourse2,daysInCourse3 };
 
-	classRosterArray[++arrayIndex] = new Student(studentID, firstName, lastName, emailAddress, age, completionDays, dp);
+	classRosterArray[++totalStudents] = new Student(studentID, firstName, lastName, emailAddress, age, completionDays, dp);
 		
-	//classRosterArray[arrayIndex] = new Student(studentID, firstName, lastName, emailAddress, age, completionDays[0], completionDays[1], completionDays[2], dp);
-	//cout << "Student added to class roster on row" << arrayIndex + 1 << endl;
 }
  
 
@@ -89,15 +73,16 @@ void Roster::remove(string studentID)
 		if (classRosterArray[i]->Student::getID() == studentID)
 		{
 			success = true;
-			Student* del = classRosterArray[i];
-			classRosterArray[i] = classRosterArray[numStudents - 1];
-			classRosterArray[numStudents - 1] = del;
-			Roster::arrayIndex--;
+			for (int j = i+1; j <= totalStudents; j++)
+			{
+				classRosterArray[j-1] = classRosterArray[j];
+			}
+			Roster::totalStudents--;
 		}
 	}
 	if (success)
 	{
-		cout << "Student " << studentID << " was removed" << endl;
+		cout << "Student " << studentID << " was removed\n" << endl;
 		printAll();
 	}
 	else cout << "Student " << studentID << " was not found" << endl;
@@ -112,10 +97,9 @@ Student* Roster::getStudents(int arrayIndex)
 void Roster::printAll()
 {
 	Student::printHeader();
-	for (int i = 0; i <= 4; i++) Roster::classRosterArray[i]->print();
+	for (int i = 0; i <= totalStudents; i++) Roster::classRosterArray[i]->print();
 }
 
-//video 15 pass in booktype? was here
 
 
 //prints a student’s average number of days in the three courses. The student is identified by the studentID parameter.
@@ -152,11 +136,7 @@ void Roster::printInvalidEmails()
 		{
 			cout << email << " - Invalid Email" << endl;
 		}
-	/*{
-		string email = classRosterArray[i]->Student::getEmail();
-		if (email.find('@') != string::npos || email.find('.') != string::npos || email.find(' ') == string::npos)
-		cout << email << " - Invalid Email" << endl;
-	}*/
+
 	}
 
 
@@ -176,5 +156,7 @@ Roster::~Roster()
 	{
 		cout << "Destructor called for " << classRosterArray[i]->getID() << endl;
 		classRosterArray[i] = nullptr;
+
 	}
+	std::cout << "\n++++++++++++++++++++++++++++++++++++++++++\n" << endl;
 }

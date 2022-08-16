@@ -10,7 +10,7 @@ Student::Student()
 	for (int i = 0; i < dayArraySize; i++) this->completionDays[i] = 0;
 	this->degreeProgam = DegreeProgram::SECURITY;
 }
-//Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int completionDays[], DegreeProgram degreeProgam);
+
 Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int completionDays[], DegreeProgram degreeProgam)
 {
 	this->studentID = studentID;
@@ -44,22 +44,22 @@ void Student::setDegreeProgram(DegreeProgram degreeProgam) { this->degreeProgam 
 
 void Student::printHeader()
 {
-	std::cout << "Student ID\t";
-	std::cout << "First Name\t";
-	std::cout << "Last Name\t";
-	std::cout << "Email\t";
+	std::cout << "ID\t";
+	std::cout << "First\t";
+	std::cout << "Last\t\t";
+	std::cout << "Email\t\t\t";
 	std::cout << "Age\t";
-	std::cout << "Days in Course1\t";
-	std::cout << "Days in Course2\t";
-	std::cout << "Days in Course3\t";
-	std::cout << "Degree Program\t";
+	std::cout << "Days 1\t";
+	std::cout << "Days 2\t";
+	std::cout << "Days 3\t";
+	std::cout << "Degree Program \t";
 	std::cout << endl;
 }
 void Student::print()
 {
 	std::cout << this->studentID << "\t";
 	std::cout << this->firstName << "\t";
-	std::cout << this->lastName << "\t";
+	std::cout << this->lastName << "    \t";
 	std::cout << this->emailAddress << "\t";
 	std::cout << this->age << "\t";
 	std::cout << this->completionDays[0] << "\t";

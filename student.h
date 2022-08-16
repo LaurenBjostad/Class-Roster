@@ -25,7 +25,6 @@ private:
 	DegreeProgram degreeProgam;
 public:
 	Student();
-	//Student(string studentID, string firstName, string lastName, string emailAddress, int age, int completionDays[], DegreeProgram degreeProgam);
 	Student(string studentID, string firstName, string lastName, string emailAddress, int age, int completionDays[], DegreeProgram degreeProgam);
 	~Student();
 //getters
